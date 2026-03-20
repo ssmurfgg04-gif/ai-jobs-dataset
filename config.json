@@ -1,0 +1,22 @@
+{
+  "search_terms": [
+    "software engineer remote",
+    "full stack developer remote",
+    "backend developer remote",
+    "python developer remote",
+    "react developer remote",
+    "node.js remote"
+  ],
+  "tech_skills": [
+    "react",
+    "next.js",
+    "nextjs",
+    "python",
+    "node.js",
+    "nodejs",
+    "full stack"
+  ],
+  "jobspy_platforms": ["linkedin", "indeed", "glassdoor"],
+  "jobspy_results_wanted": 1000,
+  "jobspy_hours_old": 72
+}
