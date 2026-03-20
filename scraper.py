@@ -4,6 +4,11 @@ import os
 import time
 import random
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", message=".*dict.*")
+warnings.filterwarnings("ignore", message=".*Pydantic.*")
+
 def install_dependencies():
     packages = {
         "pandas": "pandas",
@@ -46,6 +51,7 @@ with open("config.json", "r") as f:
 SEARCH_TERMS = config.get("search_terms", [])
 TECH_SKILLS = config.get("tech_skills", [])
 PLATFORMS = config.get("jobspy_platforms", ["linkedin", "indeed"])
+TARGET_LOCATIONS = config.get("jobspy_target_locations", ["USA", "Europe", "UK"])
 RESULTS_WANTED = config.get("jobspy_results_wanted", 150)
 HOURS_OLD = config.get("jobspy_hours_old", 720)
 
@@ -99,37 +105,37 @@ def main():
     # ----------------------------------------------------
     # MAINSTREAM BOARDS (LinkedIn, Indeed, Glassdoor)
     # ----------------------------------------------------
-    for term in SEARCH_TERMS:
-        # We loop sequentially over platforms to explicitly wrap each scrape call in a try/except, 
-        # ensure accurate platform-level console output, and cleanly sleep between each platform scrape call.
-        for platform in PLATFORMS:
-            print(f"Scraping {platform} for '{term}'...")
-            try:
-                jobs = scrape_jobs(
-                    site_name=[platform],
-                    search_term=term,
-                    location="India",
-                    results_wanted=RESULTS_WANTED,
-                    is_remote=True,
-                    hours_old=HOURS_OLD,
-                    country_indeed="India"
-                )
-                
-                count = len(jobs) if jobs is not None and not jobs.empty else 0
-                print(f"Scraped {count} results from {platform}")
-                
-                if count > 0:
-                    all_data.append(jobs)
-                    total_raw_results += count
+    for loc in TARGET_LOCATIONS:
+        for term in SEARCH_TERMS:
+            for platform in PLATFORMS:
+                print(f"Scraping {platform} for '{term}' in '{loc}'...")
+                try:
+                    kwargs = {
+                        "site_name": [platform],
+                        "search_term": term,
+                        "location": loc,
+                        "results_wanted": RESULTS_WANTED,
+                        "is_remote": True,
+                        "hours_old": HOURS_OLD
+                    }
+                    # Indeed requires exact country enums if we supply them
+                    if platform == "indeed" and loc.lower() in ["usa", "uk", "canada"]:
+                        kwargs["country_indeed"] = loc.lower()
+                    
+                    jobs = scrape_jobs(**kwargs)
+                    
+                    count = len(jobs) if jobs is not None and not jobs.empty else 0
+                    print(f"Scraped {count} results from {platform}")
+                    
+                    if count > 0:
+                        all_data.append(jobs)
+                        total_raw_results += count
 
-            except Exception as e:
-                # Custom try/except and specific failure printing per requirements
-                print(f"Warning: Failed to scrape {platform} for '{term}'. Error: {e}")
+                except Exception as e:
+                    print(f"Warning: Failed to scrape {platform} for '{term}' in '{loc}'. Error: {e}")
 
-            # "Add a random sleep of 3-7 seconds between each scrape call to avoid rate limiting"
-            sleep_t = random.uniform(3, 7)
-            # print(f"Sleeping {sleep_t:.2f}s before next scrape...")
-            time.sleep(sleep_t)
+                sleep_t = random.uniform(3, 7)
+                time.sleep(sleep_t)
 
     print(f"\nTotal raw results collected: {total_raw_results}")
 

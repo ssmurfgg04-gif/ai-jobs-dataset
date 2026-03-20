@@ -17,6 +17,7 @@
     "full stack"
   ],
   "jobspy_platforms": ["linkedin", "indeed", "glassdoor"],
+  "jobspy_target_locations": ["USA", "Europe", "UK"],
   "jobspy_results_wanted": 1000,
   "jobspy_hours_old": 72
 }
