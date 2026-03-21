@@ -35,26 +35,26 @@ def fetch_twitter_jobs(search_terms, max_results=500):
                     continue
 
                 jobs.append({
-                    'Company Name': company_name[:100],
-                    'Job Title': title[:100],
-                    'Location': 'Remote / X',
-                    'Job URL': href,
-                    'Date Posted': datetime.now(),
-                    'Site': 'X (Twitter)',
-                    'Company Industry': 'Tech/Web (X)',
-                    'Company Employee Count': None,
-                    'Salary Min': None,
-                    'Salary Max': None
+                    'company': company_name[:100],
+                    'title': title[:100],
+                    'location': 'Remote / X',
+                    'job_url': href,
+                    'date_posted': datetime.now(),
+                    'site': 'X (Twitter)',
+                    'company_industry': 'Tech/Web (X)',
+                    'company_num_employees': None,
+                    'min_amount': None,
+                    'max_amount': None,
+                    'description': body
                 })
         except Exception as e:
-            # Duckduckgo can ratelimit, pass gracefully
             pass
             
         time.sleep(1) # Be gentle to search engine
             
     df = pd.DataFrame(jobs)
-    if not df.empty:
-        df = df.drop_duplicates(subset=['Job URL'])
+    if not df.empty and 'job_url' in df.columns:
+        df = df.drop_duplicates(subset=['job_url'])
         
     total_found = len(df) if not df.empty else 0
     print(f"Scraped {total_found} matching X/Twitter jobs.")

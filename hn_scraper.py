@@ -76,16 +76,17 @@ def fetch_hn_jobs(search_terms, max_jobs=2000):
             date_posted = datetime.fromtimestamp(c_data.get('time', 0)) if c_data.get('time') else datetime.now()
             
             return {
-                'Company Name': company_name[:100],
-                'Job Title': job_title[:100],
-                'Location': 'Remote / HN',
-                'Job URL': f"https://news.ycombinator.com/item?id={c_id}",
-                'Date Posted': date_posted,
-                'Site': 'HackerNews',
-                'Company Industry': 'Startup (HN)',
-                'Company Employee Count': None,
-                'Salary Min': None,
-                'Salary Max': None
+                'company': company_name[:100],
+                'title': job_title[:100],
+                'location': 'Remote / HN',
+                'job_url': f"https://news.ycombinator.com/item?id={c_id}",
+                'date_posted': date_posted,
+                'site': 'HackerNews',
+                'company_industry': 'Startup/Tech',
+                'company_num_employees': None,
+                'min_amount': None,
+                'max_amount': None,
+                'description': clean_text
             }
             
         except Exception:

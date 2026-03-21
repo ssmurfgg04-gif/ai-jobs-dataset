@@ -27,16 +27,17 @@ def fetch_remotive_jobs(tech_skills):
             continue
 
         jobs.append({
-            'Company Name': j.get('company_name', '')[:100],
-            'Job Title': j.get('title', '')[:100],
-            'Location': f"Remotive: {j.get('candidate_required_location', '')}",
-            'Job URL': j.get('url', ''),
-            'Date Posted': j.get('publication_date', '')[:10],
-            'Site': 'Remotive',
-            'Company Industry': 'Software Dev',
-            'Company Employee Count': None,
-            'Salary Min': None,
-            'Salary Max': None
+            'company': j.get('company_name', '')[:100],
+            'title': j.get('title', '')[:100],
+            'location': f"Remotive: {j.get('candidate_required_location', '')}",
+            'job_url': j.get('url', ''),
+            'date_posted': j.get('publication_date', '')[:10],
+            'site': 'Remotive',
+            'company_industry': 'Software Dev',
+            'company_num_employees': None,
+            'min_amount': None,
+            'max_amount': None,
+            'description': desc
         })
     return jobs
 
@@ -69,16 +70,17 @@ def fetch_remoteok_jobs(tech_skills):
             continue
 
         jobs.append({
-            'Company Name': company[:100],
-            'Job Title': j.get('position', '')[:100],
-            'Location': f"RemoteOK: {j.get('location', '')}",
-            'Job URL': j.get('apply_url', j.get('url', '')),
-            'Date Posted': str(j.get('date', ''))[:10],
-            'Site': 'RemoteOK',
-            'Company Industry': 'Tech',
-            'Company Employee Count': None,
-            'Salary Min': j.get('salary_min', None),
-            'Salary Max': j.get('salary_max', None)
+            'company': company[:100],
+            'title': j.get('position', '')[:100],
+            'location': f"RemoteOK: {j.get('location', '')}",
+            'job_url': j.get('apply_url', j.get('url', '')),
+            'date_posted': str(j.get('date', ''))[:10],
+            'site': 'RemoteOK',
+            'company_industry': 'Tech',
+            'company_num_employees': None,
+            'min_amount': j.get('salary_min', None),
+            'max_amount': j.get('salary_max', None),
+            'description': desc
         })
     return jobs
 
@@ -114,16 +116,17 @@ def fetch_weworkremotely_jobs(tech_skills):
             continue
 
         jobs.append({
-            'Company Name': company_name[:100],
-            'Job Title': job_title[:100],
-            'Location': 'WWR: Worldwide/Anywhere',
-            'Job URL': link,
-            'Date Posted': pub_date,
-            'Site': 'WeWorkRemotely',
-            'Company Industry': 'Tech',
-            'Company Employee Count': None,
-            'Salary Min': None,
-            'Salary Max': None
+            'company': company_name[:100],
+            'title': job_title[:100],
+            'location': 'WWR: Worldwide/Anywhere',
+            'job_url': link,
+            'date_posted': pub_date,
+            'site': 'WeWorkRemotely',
+            'company_industry': 'Tech',
+            'company_num_employees': None,
+            'min_amount': None,
+            'max_amount': None,
+            'description': desc_text
         })
     return jobs
 
@@ -146,8 +149,8 @@ def fetch_remote_boards(search_terms):
     if wwr_jobs: all_jobs.extend(wwr_jobs)
     
     df = pd.DataFrame(all_jobs)
-    if not df.empty and 'Job URL' in df.columns:
-        df = df.drop_duplicates(subset=['Job URL'])
+    if not df.empty and 'job_url' in df.columns:
+        df = df.drop_duplicates(subset=['job_url'])
         
     print(f"Phase 2 Complete: Scraped {len(df) if not df.empty else 0} matching jobs from Remote Boards.")
     return df

@@ -213,7 +213,9 @@ def main():
     print(f"Final valid NEW jobs to save: {len(df)}")
 
     # Proceed to format output Excel spreadsheet
-    filename = "remote_companies_hiring.xlsx"
+    from datetime import datetime
+    date_str = datetime.now().strftime("%Y-%m-%d_%H%M")
+    filename = f"remote_companies_hiring_{date_str}.xlsx"
     try:
         # Strip tz-awareness from dates as openpyxl doesn't support them well
         if 'Date Posted' in df.columns:
