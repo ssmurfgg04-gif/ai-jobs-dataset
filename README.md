@@ -161,7 +161,7 @@ No API keys required. All sources are scraped using public APIs, RSS feeds, or s
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/JobScraper.git
+git clone https://github.com/Harsh-C7/JobScraper.git
 cd JobScraper
 ```
 
