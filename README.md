@@ -2,7 +2,7 @@
 
 **Weekly-refreshed dataset of 500+ active remote AI/ML jobs with salary data, tech stack, and direct application links.**
 
-[Buy on Gumroad](https://gumroad.com/l/ai-ml-remote-jobs)
+[Buy on Gumroad](https://smurfglow.gumroad.com/l/kqtaiu)
 
 ## Dataset Contents
 

@@ -18,7 +18,7 @@ LinkedIn · Indeed · Glassdoor · RemoteOK · Remotive · WeWorkRemotely · Hac
 
 It's $19 for a one-time snapshot or $49 for annual (52 weekly updates). But honestly, if you just need this week's data, the one-time is fine.
 
-https://gumroad.com/l/ai-ml-remote-jobs
+https://smurfglow.gumroad.com/l/kqtaiu
 
 Happy to answer questions about the pipeline or data sources.
 
@@ -44,7 +44,7 @@ The full dataset has 500+ rows with salary data, tech stack requirements, compan
 
 One-time download for $19, or get weekly updates for $49/year.
 
-https://gumroad.com/l/ai-ml-remote-jobs
+https://smurfglow.gumroad.com/l/kqtaiu
 
 ---
 
@@ -68,6 +68,6 @@ I aggregated remote AI/ML job listings from 12 sources and analyzed the salary d
 - Most "remote" AI jobs still restrict to US/Canada or Europe
 - Salary data is only listed in ~30% of postings (we include it when available)
 
-I packaged the full dataset (500+ jobs, updated weekly) if you want to analyze it yourself: https://gumroad.com/l/ai-ml-remote-jobs
+I packaged the full dataset (500+ jobs, updated weekly) if you want to analyze it yourself: https://smurfglow.gumroad.com/l/kqtaiu
 
 The raw CSV includes company, title, salary range, tech stack, location, and application URL for every role.

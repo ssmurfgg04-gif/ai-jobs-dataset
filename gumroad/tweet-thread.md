@@ -34,7 +34,7 @@ I was spending 2-3 hours every week checking 20+ tabs for remote AI roles. Now t
 
 Both include CSV + JSON + formatted Excel.
 
-https://gumroad.com/l/ai-ml-remote-jobs
+https://smurfglow.gumroad.com/l/kqtaiu
 
 6/ If you're a data person who prefers working with raw data over job boards, this is for you.
 Filter by salary. Sort by tech stack. Export to your spreadsheet.
