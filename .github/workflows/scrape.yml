@@ -1,0 +1,37 @@
+name: Weekly AI/ML Jobs Scrape
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas python-jobspy openpyxl beautifulsoup4 duckduckgo-search tqdm requests lxml
+
+      - name: Run scraper
+        run: python scraper.py
+        env:
+          AI_JOBS_OUTPUT_DIR: ${{ github.workspace }}/data
+
+      - name: Commit output
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Weekly AI/ML jobs dataset update $(date +%Y-%m-%d)"
+          git push

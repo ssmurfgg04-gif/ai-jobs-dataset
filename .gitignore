@@ -171,7 +171,10 @@ cython_debug/
 #.idea/
 
 # Data and output files
-*.db
+jobs_state.db
 *.xlsx
 *.~*
 .~*
+
+# Track data/output CSV/JSON but not temp files
+data/*.xlsx
