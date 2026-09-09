@@ -65,8 +65,20 @@
     "regression",
     "clustering"
   ],
-  "jobspy_platforms": ["linkedin", "indeed", "glassdoor"],
-  "jobspy_target_locations": ["USA", "Europe", "UK", "Canada", "Australia", "India", "Singapore", "Remote"],
+  "jobspy_platforms": [
+    "linkedin",
+    "indeed"
+  ],
+  "jobspy_target_locations": [
+    "USA",
+    "Europe",
+    "UK",
+    "Canada",
+    "Australia",
+    "India",
+    "Singapore",
+    "Remote"
+  ],
   "jobspy_results_wanted": 500,
   "jobspy_hours_old": 168
 }
